@@ -1,17 +1,20 @@
 import './index.css'
 import './reset.css'
-import { Header, Home, About, Skills, Contact, OurStores  } from './components'
+import { Header, Home, About, Skills, Contact, Projects  } from './components'
+import languages from './languages.json'
+import { useState } from 'react'
 
 function App() {
-
+  const [language, setLanguage] = useState(languages[0])
+  
   return (
     <main id='main'>
-      <Header></Header>
-      <Home></Home>
-      <About></About>
-      <Skills></Skills>
-      <OurStores></OurStores>
-      <Contact></Contact>
+      <Header language={language} setLanguage={setLanguage}></Header>
+      <Home language={language}></Home>
+      <About language={language}></About>
+      <Skills language={language}></Skills>
+      <Projects language={language}></Projects>
+      <Contact language={language}></Contact>
     </main>
   )
 }

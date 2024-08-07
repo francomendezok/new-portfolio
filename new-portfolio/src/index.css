@@ -75,9 +75,11 @@
 }
 
 #projects img {
-    width: 75%;
+    width: 1040px;
+    height: 500px;
     border-radius: 12px;
     margin: auto;
+    margin-bottom: 2rem;
 }
   
 
@@ -98,7 +100,7 @@
     display: flex;
     gap: .4rem;
     position: relative;
-    bottom: 2rem;
+    bottom: 4rem;
     justify-content: center;
     z-index: 9999;
 

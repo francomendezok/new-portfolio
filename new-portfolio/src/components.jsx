@@ -1,38 +1,54 @@
-import {useState, useEffect} from 'react';
+/* eslint-disable react/prop-types */
+import {useState, useEffect, useRef} from 'react';
 import Arrows from './Arrows.jsx';
 import projects from './projects.json';
 import x from '/x.svg';
 import linkedin from '/linkedin.svg';
 import email from '/email.svg';
 import github from '/github.svg';
+import languages from './languages.json';
 
 
-function Header () {
+function Header ({language, setLanguage}) {
+  const [flag, setFlag] = useState("/usa.png")
+
+  function handleLanguageChange () {
+    if (language === languages[0]) {
+      setLanguage(languages[1])
+      setFlag("/arg.png")
+    }
+    else {
+      setLanguage(languages[0])
+      setFlag("/usa.png")
+    }
+  }
+
+
   return (
     <header className='text-slate-50 w-full'>
       <Menu show={false}></Menu>
       <nav id="nav" className="hidden bg-transparent text-2xl w-screen h-screen items-center flex-col cursor-pointer justify-evenly bg-black sm:text-1xl sm:h-1/6 sm:flex sm:mt-4 max-3xl lg:text-4xl max-3xl">
           <div id="div-a" className="w-screen h-full flex flex-col items-center justify-evenly sm:flex-row sm:justify-evenly sm:items-center max-3xl">
             <a id="text-home" className="transform hover:scale-110 transition-transform ease-in-out duration-300" href="#home">
-              Home
+              {language.home}
             </a>
             <a id="text-about" className="transform hover:scale-110 transition-transform ease-in-out duration-300" href="#about">
-              About
+            {language.about}
             </a>
             <a id="text-projects" className="transform hover:scale-110 transition-transform ease-in-out duration-300" href="#projects">
-              Projects
+            {language.projects}
             </a>
             <a id="text-contact" className="transform hover:scale-110 transition-transform ease-in-out duration-300" href="#contact">
-              Contact
+            {language.contact}
             </a>
             <div className="rounded-md flex items-center">
-              <img className="w-8 h-6 mr-4" id="flag" src="./public/usa.png" alt="Language Flag" />
-              <select id="select-flag" className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle" name="language">
+              <img className="w-8 h-6 mr-4" id="flag" src={flag} alt="Language Flag" />
+              <select value={language} onChange={handleLanguageChange} id="select-flag" className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle" name="language">
                 <option className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle" value="EN">
-                  English
+                  {language.english}
                 </option>
                 <option className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle" value="SP">
-                  Spanish
+                  {language.spanish}
                 </option>
               </select>
             </div>
@@ -41,7 +57,6 @@ function Header () {
     </header>
   )
 }
-// eslint-disable-next-line react/prop-types
 function Menu({show}) {
     if (show) {
       return (
@@ -63,95 +78,62 @@ function Menu({show}) {
     }
 }
 
-function Home() {
+function Home({language}) {
   return (
     <div id="home" className="text-slate-50 flex flex-col justify-center items-center h-screen w-screen sm:justify-around max-3xl">
       <h1 className="relative z-20 left-1 top-0 text-3xl sm:top-4 sm:right-36 sm:text-6xl md:mt-10 lg:-left-24 lg:mt-8 lg:text-7xl lg:overflow-visible max-3xl">
         FRANCO MENDEZ
       </h1>
-      <h2
-        id="web-developer"
-        className="relative z-20 text-2xl sm:text-4xl sm:bottom-14 sm:left-24 max-3xl md:top-44 max-3xl lg:left-40 md:mb-60 lg:top-32 md:text-5xl max-3xl"
-      >
-        WEB DEVELOPER
+      <h2 id="web-developer" className="relative z-20 text-2xl sm:text-4xl sm:bottom-14 sm:left-24 max-3xl md:top-44 max-3xl lg:left-40 md:mb-60 lg:top-32 md:text-5xl max-3xl">
+        {language.webDeveloper}
       </h2>
     </div>
   );
 }
 
-function About() {
+
+function About({ language }) {
+  const textP1Ref = useRef(null);
+  const textP2Ref = useRef(null);
+  const textP3Ref = useRef(null);
+  const textP4Ref = useRef(null);
+
+  useEffect(() => {
+    if (textP1Ref.current) textP1Ref.current.innerHTML = language.textP1;
+    if (textP2Ref.current) textP2Ref.current.innerHTML = language.textP2;
+    if (textP3Ref.current) textP3Ref.current.innerHTML = language.textP3;
+    if (textP4Ref.current) textP4Ref.current.innerHTML = language.textP4;
+  }, [language]);
+
   return (
     <section id="about" className="w-screen h-full flex flex-col items-center md:flex-row md:items-center md:justify-center max-3xl">
       <div id="pic-container">
         <div id="pic-container" className="flex flex-col items-center">
           <h3 id="text-title" className="mb-4 text-center text-slate-300 text-4xl md:text-5xl md:mb-8 max-3xl">
-            I am Franco!
+            {language.presentation}
           </h3>
-          <img src="../public/profile-pic.png" alt="" className="mb-4 rounded-full w-40 h-40 md:h-44 md:w-44 max-3xl" />
+          <img src="/profile-pic.png" alt="" className="mb-4 rounded-full w-40 h-40 md:h-44 md:w-44 max-3xl" />
         </div>
       </div>
       <div
         id="presentation-div"
         className="flex flex-col justify-center w-3/4 text-center text-slate-300 text-2xl md:text-left md:ml-4 md:mr-4"
       >
-        <p id="text-p-1">
-          I am a Front-End Developer from{' '}
-          <span id="text-span-1" style={{ color: '#18bdec', fontWeight: 500 }}>
-            Argentina
-          </span>{' '}
-          who loves to learn and create with new technologies.
-        </p>
-        <p id="text-p-2" className="pt-4">
-          My focus is{' '}
-          <span id="text-span-2" style={{ color: '#18bdec', fontWeight: 500 }}>
-            Business
-          </span>{' '}
-          and{' '}
-          <span id="text-span-3" style={{ color: '#18bdec', fontWeight: 500 }}>
-            Marketing-driven,
-          </span>{' '}
-          so I can help your Business with a new{' '}
-          <span id="text-span-4" style={{ color: '#18bdec', fontWeight: 500 }}>
-            Website
-          </span>
-          , Landing page, Form, or interface that you might need to implement.
-        </p>
-        <p id="text-p-3" className="pt-4">
-          Also, I know the importance of a{' '}
-          <span id="text-span-5" style={{ color: '#18bdec', fontWeight: 500 }}>
-            Great Design
-          </span>
-          , fast and{' '}
-          <span id="text-span-6" style={{ color: '#18bdec', fontWeight: 500 }}>
-            Responsive Website
-          </span>{' '}
-          and good{' '}
-          <span id="text-span-7" style={{ color: '#18bdec', fontWeight: 500 }}>
-            SEO
-          </span>
-          .
-        </p>
-        <p id="text-p-4" className="pt-4">
-          I find coding to be a useful tool for providing clients with the right{' '}
-          <span id="text-span-8" style={{ color: '#18bdec', fontWeight: 500 }}>
-            solutions
-          </span>{' '}
-          to their problems. My focus is always on creating a better{' '}
-          <span id="text-span-9" style={{ color: '#18bdec', fontWeight: 500 }}>
-            User Experience
-          </span>{' '}
-          above all.
-        </p>
+        <p id="text-p-1" ref={textP1Ref}></p>
+        <p id="text-p-2" className="pt-4" ref={textP2Ref}></p>
+        <p id="text-p-3" className="pt-4" ref={textP3Ref}></p>
+        <p id="text-p-4" className="pt-4" ref={textP4Ref}></p>
       </div>
     </section>
   );
 }
 
-function Skills() {
+
+function Skills({language}) {
   return (
     <section id="skills" className="h-screen w-screen">
       <p id="p-skills" className="text-center text-slate-300 text-5xl mt-8 mb-8 md:mt-24 max-3xl">
-        Skills
+        {language.skills}
       </p>
       <div
         id="skills-box"
@@ -194,11 +176,10 @@ function Skills() {
   );
 }
 
-
-function Contact () {
+function Contact ({language}) {
   return (
     <section id="contact" className="text-3xl text-center h-1/2 w-screen md:mt-12 md:text-5xl max-3xl">
-        <h3 id="text-contact-h3">Contact</h3>
+        <h3 id="text-contact-h3">{language.contact}</h3>
         <div id="social-icons" className="grid grid-cols-2 md:mt-8 md:mb-8 md:flex md:items-center md:justify-evenly max-3xl">
                 <div className="transform hover:scale-110 transition-transform ease-in-out duration-300 hover:text-cyan-300 flex items-center justify-center mt-4 text-center text-2xl md:text-3xl max-3xl">
                     <a className="w-full flex flex-col items-center" target="_blank" href="https://twitter.com/francomendezok"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src={x} alt=""/>X</a>
@@ -213,13 +194,12 @@ function Contact () {
                     <a className="w-full flex flex-col items-center" target="_blank" href="mailto:francomendezok@gmail.com"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src={email} alt=""/>Email</a>
                 </div>
         </div>
-        <p className="mt-4 mb-4 text-2xl"><span className="text-3xl">2024</span> Franco Mendez</p>
+        <p className="mt-4 mb-4 text-2xl"><span className="text-3xl">2024 Franco Mendez</span></p>
     </section> 
   )
 }
 
-
-function OurStores() {
+function Projects({language}) {
   const [position, setPosition] = useState(0);
 
   useEffect(() => {
@@ -233,12 +213,12 @@ function OurStores() {
   return (
       <div>
           <div id='projects'>
-          <h3 id="p-projects" className="text-slate-300 text-5xl text-center mb-16">Projects</h3>
+          <h3 id="p-projects" className="text-slate-300 text-5xl text-center mb-16">{language.projects}</h3>
               <img id='project-img' src={projects[position].img} alt={`${projects[position].title} store`} />
                 <p id="project-title" className="text-center transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">{projects[position].title}</p>
               <div className="m-auto md:flex md:w-1/3 md:justify-around lg:justify-evenly xl:justify-center xl:space-x-4 max-3xl">
-                <a id="live-repo" target="_blank" href={projects[position].repo} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">Live Repo</a>
-                <a id="live-web" target="_blank" href={projects[position].web} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">View Project</a>
+                <a id="live-repo" target="_blank" href={projects[position].repo} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">{language.liveRepo}</a>
+                <a id="live-web" target="_blank" href={projects[position].web} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">{language.liveWeb}</a>
             </div>
               <div className='arrow'>
                   <Arrows position={position} setPosition={setPosition} side='left' />
@@ -261,6 +241,4 @@ function OurStores() {
   );
 }
 
-
-
-export {Header, Home, About, Skills, Contact, OurStores}
+export {Header, Home, About, Skills, Contact, Projects}
