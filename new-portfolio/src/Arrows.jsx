@@ -39,7 +39,7 @@ export default function Arrows({ position, setPosition, side }) {
 
 function handlePosition(position, setPosition, side) {
     if (side === "right") {
-        if (position < 7) {
+        if (position < 9) {
             setPosition(position + 1)
         }
         else {
@@ -49,7 +49,7 @@ function handlePosition(position, setPosition, side) {
         if (position > 0) {
             setPosition(position - 1)
         } else {
-            setPosition(7)
+            setPosition(9)
         }
     }
 }

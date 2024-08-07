@@ -7,9 +7,10 @@ import email from '/email.svg';
 import github from '/github.svg';
 
 
-function Franco () {
+function Header () {
   return (
     <header className='text-slate-50 w-full'>
+      <Menu show={false}></Menu>
       <nav id="nav" className="hidden bg-transparent text-2xl w-screen h-screen items-center flex-col cursor-pointer justify-evenly bg-black sm:text-1xl sm:h-1/6 sm:flex sm:mt-4 max-3xl lg:text-4xl max-3xl">
           <div id="div-a" className="w-screen h-full flex flex-col items-center justify-evenly sm:flex-row sm:justify-evenly sm:items-center max-3xl">
             <a id="text-home" className="transform hover:scale-110 transition-transform ease-in-out duration-300" href="#home">
@@ -40,24 +41,26 @@ function Franco () {
     </header>
   )
 }
+// eslint-disable-next-line react/prop-types
+function Menu({show}) {
+    if (show) {
+      return (
+        <header className="fixed h-10 bg-transparent w-screen z-20 sm:hidden max-3xl">
+          <svg
+            id="menu-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="relative float-right mr-4 mt-4 w-8 h-8 sm:border-4 sm:border-red-500 max-3xl"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
 
-function Header() {
-  return (
-    <header className="fixed h-10 bg-transparent w-screen z-20 sm:hidden max-3xl">
-      <svg
-        id="menu-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth="1.5"
-        stroke="currentColor"
-        className="relative float-right mr-4 mt-4 w-8 h-8 sm:border-4 sm:border-red-500 max-3xl"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-      </svg>
-
-    </header>
-  );
+        </header>
+      )
+    }
 }
 
 function Home() {
@@ -191,20 +194,6 @@ function Skills() {
   );
 }
 
-function Projects () {
-  return (
-    <section id="projects" className="h-screen w-screen md:mt-64 max-3xl">
-        <h3 id="p-projects" className="text-slate-300 text-5xl text-center">Projects</h3>
-        <div id="my-project" className="flex flex-col items-center justify-center text-center md:relative md:bottom-full md:mt-24 max-3xl">
-            <p className="text-3xl mt-4 mb-2 md:text-4xl max-3xl" id="my-title"></p>
-             <div className="md:flex md:w-1/3 md:justify-around lg:justify-evenly xl:justify-center xl:space-x-4 max-3xl">
-                <a id="live-repo" target="_blank" href="" className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">Live Repo</a>
-                <a id="live-web" target="_blank" href="" className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">View Project</a>
-            </div>
-        </div>
-    </section> 
-  )
-}
 
 function Contact () {
   return (
@@ -243,17 +232,14 @@ function OurStores() {
 
   return (
       <div>
-          <div id='store'>
-              <img id='project-img' src={projects[position].img} alt={`${projects[position].city} store`} />
-              <div className='city-info-container'>
-                  <a className='flex gap-2 items-center cursor-pointer'>{projects[position].city}
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M2.74342 8.97186L8.68751 3.02777M8.68751 3.02777L4.03349 2.19495M8.68751 3.02777L9.52033 7.68179" stroke="#452B1A"></path>
-                              <path d="M2 11.1233H10.41" stroke="#452B1A"></path>
-                      </svg>
-                  </a>
-
-              </div>
+          <div id='projects'>
+          <h3 id="p-projects" className="text-slate-300 text-5xl text-center mb-16">Projects</h3>
+              <img id='project-img' src={projects[position].img} alt={`${projects[position].title} store`} />
+                <p id="project-title" className="text-center transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">{projects[position].title}</p>
+              <div className="m-auto md:flex md:w-1/3 md:justify-around lg:justify-evenly xl:justify-center xl:space-x-4 max-3xl">
+                <a id="live-repo" target="_blank" href={projects[position].repo} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">Live Repo</a>
+                <a id="live-web" target="_blank" href={projects[position].web} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">View Project</a>
+            </div>
               <div className='arrow'>
                   <Arrows position={position} setPosition={setPosition} side='left' />
                   <Arrows position={position} setPosition={setPosition} side='right' />
@@ -268,6 +254,8 @@ function OurStores() {
               <div id={position === 5 ? 'radio-item-selected' : ''} className='position-div'></div>
               <div id={position === 6 ? 'radio-item-selected' : ''} className='position-div'></div>
               <div id={position === 7 ? 'radio-item-selected' : ''} className='position-div'></div>
+              <div id={position === 8 ? 'radio-item-selected' : ''} className='position-div'></div>
+              <div id={position === 9 ? 'radio-item-selected' : ''} className='position-div'></div>
           </div>
       </div>
   );
@@ -275,4 +263,4 @@ function OurStores() {
 
 
 
-export {Franco, Header, Home, About, Skills, Projects, Contact, OurStores}
+export {Header, Home, About, Skills, Contact, OurStores}
