@@ -9,7 +9,7 @@
     --cyan: #10b1f6; 
   }
 * {
-    color: white;
+    color: whitesmoke;
 }
 #main {
     background: url('/background.png');

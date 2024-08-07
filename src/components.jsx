@@ -9,54 +9,90 @@ import github from '/github.svg';
 import languages from './languages.json';
 
 
-function Header ({language, setLanguage}) {
-  const [flag, setFlag] = useState("/usa.png")
 
-  function handleLanguageChange () {
-    if (language === languages[0]) {
-      setLanguage(languages[1])
-      setFlag("/arg.png")
-    }
-    else {
-      setLanguage(languages[0])
-      setFlag("/usa.png")
-    }
-  }
+function Header({ language, setLanguage }) {
+  const [flag, setFlag] = useState("/usa.png");
+  const [languageCode, setLanguageCode] = useState('EN');
 
+  const handleLanguageChange = (e) => {
+    const selectedLanguage = e.target.value;
+    setLanguageCode(selectedLanguage);
+    setFlag(selectedLanguage === 'EN' ? "/usa.png" : "/arg.png");
+    setLanguage(selectedLanguage === 'EN' ? languages[0] : languages[1]);
+  };
+
+  const handleSmoothScroll = (e, sectionId) => {
+    e.preventDefault();
+    
+    const section = document.querySelector(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <header className='text-slate-50 w-full'>
+    <header className="text-slate-50 w-full">
       <Menu show={false}></Menu>
       <nav id="nav" className="hidden bg-transparent text-2xl w-screen h-screen items-center flex-col cursor-pointer justify-evenly bg-black sm:text-1xl sm:h-1/6 sm:flex sm:mt-4 max-3xl lg:text-4xl max-3xl">
-          <div id="div-a" className="w-screen h-full flex flex-col items-center justify-evenly sm:flex-row sm:justify-evenly sm:items-center max-3xl">
-            <a id="text-home" className="transform hover:scale-110 transition-transform ease-in-out duration-300" href="#home">
-              {language.home}
-            </a>
-            <a id="text-about" className="transform hover:scale-110 transition-transform ease-in-out duration-300" href="#about">
+        <div id="div-a" className="w-screen h-full flex flex-col items-center justify-evenly sm:flex-row sm:justify-evenly sm:items-center max-3xl">
+          <a
+            id="text-home"
+            className="transform hover:scale-110 transition-transform ease-in-out duration-300"
+            href="#home"
+            onClick={(e) => handleSmoothScroll(e, '#home')}
+          >
+            {language.home}
+          </a>
+          <a
+            id="text-about"
+            className="transform hover:scale-110 transition-transform ease-in-out duration-300"
+            href="#about"
+            onClick={(e) => handleSmoothScroll(e, '#about')}
+          >
             {language.about}
-            </a>
-            <a id="text-projects" className="transform hover:scale-110 transition-transform ease-in-out duration-300" href="#projects">
+          </a>
+          <a
+            id="text-projects"
+            className="transform hover:scale-110 transition-transform ease-in-out duration-300"
+            href="#projects"
+            onClick={(e) => handleSmoothScroll(e, '#projects')}
+          >
             {language.projects}
-            </a>
-            <a id="text-contact" className="transform hover:scale-110 transition-transform ease-in-out duration-300" href="#contact">
+          </a>
+          <a
+            id="text-contact"
+            className="transform hover:scale-110 transition-transform ease-in-out duration-300"
+            href="#contact"
+            onClick={(e) => handleSmoothScroll(e, '#contact')}
+          >
             {language.contact}
-            </a>
-            <div className="rounded-md flex items-center">
-              <img className="w-8 h-6 mr-4" id="flag" src={flag} alt="Language Flag" />
-              <select value={language} onChange={handleLanguageChange} id="select-flag" className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle" name="language">
-                <option className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle" value="EN">
-                  {language.english}
-                </option>
-                <option className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle" value="SP">
-                  {language.spanish}
-                </option>
-              </select>
-            </div>
+          </a>
+          <div className="rounded-md flex items-center">
+            <img className="w-8 h-6 mr-4" id="flag" src={flag} alt="Language Flag" />
+            <select
+              value={languageCode}
+              onChange={handleLanguageChange}
+              id="select-flag"
+              className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle"
+              name="language"
+            >
+              <option className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle" value="EN">
+                {language.english}
+              </option>
+              <option className="cursor-pointer text-slate-200 bg-black text-1xl text-center align-middle" value="SP">
+                {language.spanish}
+              </option>
+            </select>
           </div>
+        </div>
       </nav>
     </header>
-  )
+  );
 }
+
+export default Header;
+
+
 function Menu({show}) {
     if (show) {
       return (
