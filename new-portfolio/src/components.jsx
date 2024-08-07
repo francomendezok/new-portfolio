@@ -1,6 +1,10 @@
 import {useState, useEffect} from 'react';
 import Arrows from './Arrows.jsx';
 import projects from './projects.json';
+import x from '/x.svg';
+import linkedin from '/linkedin.svg';
+import email from '/email.svg';
+import github from '/github.svg';
 
 
 function Franco () {
@@ -80,7 +84,7 @@ function About() {
           <h3 id="text-title" className="mb-4 text-center text-slate-300 text-4xl md:text-5xl md:mb-8 max-3xl">
             I am Franco!
           </h3>
-          <img src="./images/profile-pic.png" alt="" className="mb-4 rounded-full w-40 h-40 md:h-44 md:w-44 max-3xl" />
+          <img src="../public/profile-pic.png" alt="" className="mb-4 rounded-full w-40 h-40 md:h-44 md:w-44 max-3xl" />
         </div>
       </div>
       <div
@@ -148,27 +152,39 @@ function Skills() {
       </p>
       <div
         id="skills-box"
-        className="flex flex-col h-3/4 items-center justify-around md:flex-row md:h-full max-3xl md:justify-center lg:justify-evenly"
+        className="flex flex-wrap w-1/2 h-1/2 items-center m-auto justify-around md:flex-row md:h-full max-3xl md:justify-center lg:justify-evenly"
       >
         <div className="flex flex-col justify-center items-center rounded-2xl h-20 w-20 md:h-40 md:w-40 max-3xl transform hover:scale-105 ease-in-out cursor-pointer hover:rotate-6">
-          <img src="./images/js.png" alt="" />
+          <img src="/js.png" alt="" />
           <p className="text-center text-slate-300 mt-4">JAVASCRIPT</p>
         </div>
         <div className="flex flex-col justify-center items-center rounded-2xl h-20 w-20 md:h-40 md:w-40 max-3xl transform hover:scale-105 ease-in-out cursor-pointer hover:-rotate-6">
-          <img src="./images/html.png" alt="" />
+          <img src="/html.png" alt="" />
           <p className="text-center text-slate-300 mt-4">HTML</p>
         </div>
         <div className="flex flex-col justify-center items-center rounded-2xl h-20 w-20 md:h-40 md:w-40 max-3xl transform hover:scale-105 ease-in-out cursor-pointer hover:rotate-6">
-          <img src="./images/css.png" alt="" />
+          <img src="/css.png" alt="" />
           <p className="text-center text-slate-300 mt-4">CSS</p>
         </div>
+        <div className="flex flex-col justify-center items-center rounded-2xl h-20 w-20 md:h-40 md:w-40 max-3xl transform hover:scale-105 ease-in-out cursor-pointer hover:rotate-6">
+          <img src="/tailwindcss.png" alt="" />
+          <p className="text-center text-slate-300 mt-4">TAILWIND CSS</p>
+        </div>
         <div className="flex flex-col justify-center items-center rounded-2xl h-20 w-20 md:h-40 md:w-40 max-3xl transform hover:scale-105 ease-in-out cursor-pointer hover:-rotate-6">
-          <img src="./images/react.png" alt="" />
+          <img src="/react.webp" alt="" />
           <p className="text-center text-slate-300 mt-4">REACT</p>
         </div>
         <div className="flex flex-col justify-center items-center rounded-2xl h-20 w-20 md:h-40 md:w-40 max-3xl transform hover:scale-105 ease-in-out cursor-pointer hover:rotate-6">
-          <img src="./images/bootstrap.png" alt="" />
-          <p className="text-center text-slate-300 mt-4">BOOTSTRAP</p>
+          <img src="/csharp.webp" alt="" />
+          <p className="text-center text-slate-300 mt-4">C#</p>
+        </div>
+        <div className="flex flex-col justify-center items-center rounded-2xl h-20 w-20 md:h-40 md:w-40 max-3xl transform hover:scale-105 ease-in-out cursor-pointer hover:rotate-6">
+          <img src="/sql.png" alt="" />
+          <p className="text-center text-slate-300 mt-4">SQL</p>
+        </div>
+        <div className="flex flex-col justify-center items-center rounded-2xl h-20 w-20 md:h-40 md:w-40 max-3xl transform hover:scale-105 ease-in-out cursor-pointer hover:rotate-6">
+          <img src="/node.png" alt="" />
+          <p className="text-center text-slate-300 mt-4">NODE</p>
         </div>
       </div>
     </section>
@@ -179,23 +195,12 @@ function Projects () {
   return (
     <section id="projects" className="h-screen w-screen md:mt-64 max-3xl">
         <h3 id="p-projects" className="text-slate-300 text-5xl text-center">Projects</h3>
-        <img id="blue-bgc" className="md:bg-black md:opacity-50 md:relative md:-z-40 md:w-full md:m-auto md:h-full max-3xl" src="./images/test.webp" alt=""/>
         <div id="my-project" className="flex flex-col items-center justify-center text-center md:relative md:bottom-full md:mt-24 max-3xl">
-            <img className="w-80 h-80 rounded-3xl border-2 border-slate-700 transform hover:scale-105 ease-in-out duration-500 cursor-pointer xs:w-72 xs:h-72 md:h-96 md:w-96 max-3xl" id="my-img" src="" alt=""/>
             <p className="text-3xl mt-4 mb-2 md:text-4xl max-3xl" id="my-title"></p>
              <div className="md:flex md:w-1/3 md:justify-around lg:justify-evenly xl:justify-center xl:space-x-4 max-3xl">
                 <a id="live-repo" target="_blank" href="" className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">Live Repo</a>
                 <a id="live-web" target="_blank" href="" className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">View Project</a>
             </div>
-        </div>
-        <div id="dots" className="flex justify-center items-center mt-4 mb-4 md:relative md:bottom-full max-3xl">
-            <input data-number="0" name="selected" type="radio" className="md:transform scale-110"/>
-            <input data-number="1" name="selected" type="radio" className="md:transform scale-110"/>
-            <input data-number="2" name="selected" type="radio" className="md:transform scale-110"/>
-            <input data-number="3" name="selected" type="radio" className="md:transform scale-110"/>
-            <input data-number="4" name="selected" type="radio" className="md:transform scale-110"/>
-            <input data-number="5" name="selected" type="radio" className="md:transform scale-110"/>
-            <input data-number="6" name="selected" type="radio" className="md:transform scale-110"/>
         </div>
     </section> 
   )
@@ -207,30 +212,23 @@ function Contact () {
         <h3 id="text-contact-h3">Contact</h3>
         <div id="social-icons" className="grid grid-cols-2 md:mt-8 md:mb-8 md:flex md:items-center md:justify-evenly max-3xl">
                 <div className="transform hover:scale-110 transition-transform ease-in-out duration-300 hover:text-cyan-300 flex items-center justify-center mt-4 text-center text-2xl md:text-3xl max-3xl">
-                    <a className="w-full flex flex-col items-center" target="_blank" href="https://twitter.com/francomendezok"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src="./images/Twitter_white.png" alt=""/>Twitter</a>
+                    <a className="w-full flex flex-col items-center" target="_blank" href="https://twitter.com/francomendezok"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src={x} alt=""/>X</a>
                 </div>
                 <div className="transform hover:scale-110 transition-transform ease-in-out duration-300 hover:text-cyan-300 flex items-center justify-center mt-4 text-center text-2xl md:text-3xl max-3xl">
-                    <a className="w-full flex flex-col items-center" target="_blank" href="https://linkedin.com/in/franco-mendez-a462b7235"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src="./images/LinkedIN_white.png" alt=""/>Linkedin</a>
+                    <a className="w-full flex flex-col items-center" target="_blank" href="https://linkedin.com/in/franco-mendez-a462b7235"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src={linkedin} alt=""/>Linkedin</a>
                 </div>
                 <div className="transform hover:scale-110 transition-transform ease-in-out duration-300 hover:text-cyan-300 flex items-center justify-center mt-4 text-center text-2xl md:text-3xl max-3xl">
-                    <a className="w-full flex flex-col items-center" target="_blank" href="https://github.com/francomendezok"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src="./images/Github_white.png" alt=""/>Github</a>
+                    <a className="w-full flex flex-col items-center" target="_blank" href="https://github.com/francomendezok"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src={github} alt=""/>Github</a>
                 </div>
                 <div className="transform hover:scale-110 transition-transform ease-in-out duration-300 hover:text-cyan-300 flex items-center justify-center mt-4 text-center text-2xl md:text-3xl max-3xl">
-                    <a className="w-full flex flex-col items-center" target="_blank" href="mailto:francomendezok@gmail.com"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src="./images/Gmail_white.png" alt=""/>Email</a>
+                    <a className="w-full flex flex-col items-center" target="_blank" href="mailto:francomendezok@gmail.com"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src={email} alt=""/>Email</a>
                 </div>
         </div>
-        <p className="mt-4 mb-4 text-2xl"><span className="text-3xl">2023</span> Franco Mendez</p>
+        <p className="mt-4 mb-4 text-2xl"><span className="text-3xl">2024</span> Franco Mendez</p>
     </section> 
   )
 }
 
-function Footer() {
-  return (
-    <footer className="h-16 w-screen bg-transparent flex justify-center items-center sm:hidden max-3xl">
-      <p className="text-slate-300 text-xl">Created by Franco Mendez</p>
-    </footer>
-  );
-}
 
 function OurStores() {
   const [position, setPosition] = useState(0);
@@ -245,9 +243,8 @@ function OurStores() {
 
   return (
       <div>
-         
           <div id='store'>
-              <img src={projects[position].img} alt={`${projects[position].city} store`} />
+              <img id='project-img' src={projects[position].img} alt={`${projects[position].city} store`} />
               <div className='city-info-container'>
                   <a className='flex gap-2 items-center cursor-pointer'>{projects[position].city}
                       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -255,22 +252,7 @@ function OurStores() {
                               <path d="M2 11.1233H10.41" stroke="#452B1A"></path>
                       </svg>
                   </a>
-                  <div className='stores-info-box'>
-                      <div className='address-box'>
-                          <p>{projects[position].street}</p>
-                          <p>{projects[position].zip}</p>
-                      </div>
-                      <div className='days-box'>
-                          <p>{projects[position].weekdays}</p>
-                          {position === 5 ? <p>{projects[position].saturday}</p> : null}
-                          <p>{projects[position].sunday}</p>
-                      </div>
-                      <div className='hs-box'>
-                          <p>{projects[position]['hs-weekdays']}</p>
-                          {position === 5 ? <p>{projects[position]['hs-saturday']}</p> : null}
-                          <p>{projects[position]['hs-sunday']}</p>
-                      </div>
-                  </div>
+
               </div>
               <div className='arrow'>
                   <Arrows position={position} setPosition={setPosition} side='left' />
@@ -293,4 +275,4 @@ function OurStores() {
 
 
 
-export {Franco, Header, Home, About, Skills, Projects, Contact, Footer, OurStores}
+export {Franco, Header, Home, About, Skills, Projects, Contact, OurStores}

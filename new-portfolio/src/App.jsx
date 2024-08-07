@@ -1,6 +1,6 @@
 import './index.css'
 import './reset.css'
-import { Franco, Home, About, Skills, Projects, Contact, Footer, OurStores  } from './components'
+import { Franco, Home, About, Skills, Projects, Contact, OurStores  } from './components'
 
 function App() {
 
@@ -13,7 +13,6 @@ function App() {
       <Projects></Projects>
       <OurStores></OurStores>
       <Contact></Contact>
-      <Footer></Footer>
     </main>
   )
 }
