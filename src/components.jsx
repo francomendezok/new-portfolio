@@ -13,7 +13,8 @@ import languages from './languages.json';
 function Header({ visible, setVisible, language, setLanguage }) {
   const [flag, setFlag] = useState("/usa.png");
   const [languageCode, setLanguageCode] = useState('EN');
-  const [navStatus, setNavStatus] = useState('hidden')
+  const [navStatus, setNavStatus] = useState('fixed')
+
 
   const handleLanguageChange = (e) => {
     const selectedLanguage = e.target.value;
@@ -26,14 +27,15 @@ function Header({ visible, setVisible, language, setLanguage }) {
     e.preventDefault();
     const section = document.querySelector(sectionId);
     if (section) {
+      setNavStatus(navStatus === 'fixed' ? 'hidden' : 'fixed')
       section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <header className="text-slate-50 w-full">
+    <header className={`text-slate-50 w-full`}>
       <Menu visible={visible} setVisible={setVisible} navStatus={navStatus} setNavStatus={setNavStatus}></Menu>
-      <nav id="nav" className={`${navStatus} text-2xl w-screen h-screen items-center flex-col cursor-pointer justify-evenly bg-black sm:text-1xl sm:h-1/6 sm:flex sm:mt-4 max-3xl lg:text-4xl max-3xl`}>
+      <nav id="nav" className={`${navStatus} z-40 text-2xl w-screen h-screen items-center flex-col cursor-pointer justify-evenly bg-black sm:text-1xl sm:h-1/6 sm:flex sm:mt-4 max-3xl lg:text-4xl max-3xl`}>
         <div id="div-a" className="w-screen h-full flex flex-col items-center justify-evenly sm:flex-row sm:justify-evenly sm:items-center max-3xl">
           <a
             id="text-home"
@@ -92,15 +94,14 @@ function Header({ visible, setVisible, language, setLanguage }) {
 
 function handleMenuClick (visible, setVisible, navStatus, setNavStatus) {
   setVisible(!visible)
-  setNavStatus(navStatus === 'hidden' ? '' : 'hidden')
-  // Instead using visible, cancel scroll or use position absolute // 
+  setNavStatus(navStatus === 'fixed' ? 'hidden' : 'fixed')
 }
 
 
 function Menu({visible, setVisible, navStatus, setNavStatus}) {
 
       return (
-        <header className="fixed h-10 bg-transparent w-screen z-20 sm:hidden max-3xl">
+        <header className="fixed z-50 h-10 bg-transparent w-screen sm:hidden max-3xl">
           <svg
             id="menu-icon"
             xmlns="http://www.w3.org/2000/svg"

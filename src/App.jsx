@@ -11,16 +11,13 @@ function App() {
   return (
     <main id='main'>
       <Header visible={visible} setVisible={setVisible} language={language} setLanguage={setLanguage}></Header>
-      {visible ? 
-        <>
+
           <Home language={language}></Home>
           <About language={language}></About>
           <Skills language={language}></Skills>
           <Projects language={language}></Projects>
           <Contact language={language}></Contact>
-        </>
-      : ''
-    }
+  
     </main>
   )
 }

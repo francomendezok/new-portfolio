@@ -102,7 +102,7 @@
     position: relative;
     bottom: 4rem;
     justify-content: center;
-    z-index: 9999;
+    z-index: 20;
 
 }
 
