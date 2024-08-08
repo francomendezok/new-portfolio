@@ -13,7 +13,9 @@ import languages from './languages.json';
 function Header({ visible, setVisible, language, setLanguage }) {
   const [flag, setFlag] = useState("/usa.png");
   const [languageCode, setLanguageCode] = useState('EN');
-  const [navStatus, setNavStatus] = useState('fixed')
+  const isWideScreen = window.innerWidth >= 640 ? true : false;
+  const [navStatus, setNavStatus] = useState(!isWideScreen ? 'fixed' : 'bg-transparent')
+
 
 
   const handleLanguageChange = (e) => {
@@ -27,8 +29,10 @@ function Header({ visible, setVisible, language, setLanguage }) {
     e.preventDefault();
     const section = document.querySelector(sectionId);
     if (section) {
-      setNavStatus(navStatus === 'fixed' ? 'hidden' : 'fixed')
       section.scrollIntoView({ behavior: 'smooth' });
+      if (!isWideScreen) {
+        setNavStatus(navStatus === 'fixed' ? 'hidden' : 'fixed')
+      }
     }
   };
 
@@ -99,7 +103,6 @@ function handleMenuClick (visible, setVisible, navStatus, setNavStatus) {
 
 
 function Menu({visible, setVisible, navStatus, setNavStatus}) {
-
       return (
         <header className="fixed z-50 h-10 bg-transparent w-screen sm:hidden max-3xl">
           <svg
