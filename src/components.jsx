@@ -149,7 +149,7 @@ function About({ language }) {
   }, [language]);
 
   return (
-    <section id="about" className="w-screen h-full flex flex-col items-center md:flex-row md:items-center md:justify-center max-3xl">
+    <section id="about" className="about w-screen flex flex-col items-center md:h-full md:flex-row md:items-center md:justify-center max-3xl">
       <div id="pic-container">
         <div id="pic-container" className="flex flex-col items-center">
           <h3 id="text-title" className="mb-4 text-center text-slate-300 text-4xl md:text-5xl md:mb-8 max-3xl">
@@ -174,13 +174,13 @@ function About({ language }) {
 
 function Skills({language}) {
   return (
-    <section id="skills" className="h-screen w-screen">
+    <section id="skills" className="skills w-screen">
       <p id="p-skills" className="text-center text-slate-300 text-5xl mt-8 mb-8 md:mt-24 max-3xl">
         {language.skills}
       </p>
       <div
         id="skills-box"
-        className="flex flex-wrap w-1/2 h-1/2 items-center m-auto justify-around md:flex-row md:h-full max-3xl md:justify-center lg:justify-evenly"
+        className="flex flex-wrap w-1/2 h-screen items-center m-auto justify-around md:flex-row md:w-full md:h-full max-3xl md:justify-center lg:justify-evenly lg:w-2/3 xl:w-1/2"
       >
         <div className="flex flex-col justify-center items-center rounded-2xl h-20 w-20 md:h-40 md:w-40 max-3xl transform hover:scale-105 ease-in-out cursor-pointer hover:rotate-6">
           <img src="/js.png" alt="" />
@@ -257,11 +257,11 @@ function Projects({language}) {
       <div>
           <div id='projects'>
           <h3 id="p-projects" className="text-slate-300 text-5xl text-center mb-16">{language.projects}</h3>
-              <img id='project-img' src={projects[position].img} alt={`${projects[position].title} store`} />
-                <p id="project-title" className="text-center transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">{projects[position].title}</p>
-              <div className="m-auto md:flex md:w-1/3 md:justify-around lg:justify-evenly xl:justify-center xl:space-x-4 max-3xl">
-                <a id="live-repo" target="_blank" href={projects[position].repo} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">{language.liveRepo}</a>
-                <a id="live-web" target="_blank" href={projects[position].web} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-1xl lg:text-2xl max-3xl">{language.liveWeb}</a>
+              <img className='m-auto rounded-xl mb-8 w-[300px] h-[168px] md:w-[720px] md:h-[400px] lg:w-[920px] lg:h-[500px] xl:w-[1200px] xl:h-[540px]' src={projects[position].img} alt={`${projects[position].title} store`} />
+                <p id="project-title" className="text-center transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-2xl lg:text-3xl max-4xl">{projects[position].title}</p>
+              <div className="m-auto mt-4 w-2/4 flex justify-around md:flex md:w-1/3 md:justify-around lg:justify-evenly xl:justify-center xl:space-x-4 max-3xl">
+                <a id="live-repo" target="_blank" href={projects[position].repo} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-2xl lg:text-3xl max-4xl">{language.liveRepo}</a>
+                <a id="live-web" target="_blank" href={projects[position].web} className="transform hover:scale-105 transition-transform duration-300 ease-in-out hover:text-cyan-300 md:text-2xl lg:text-3xl max-4xl">{language.liveWeb}</a>
             </div>
               <div className='arrow'>
                   <Arrows position={position} setPosition={setPosition} side='left' />
