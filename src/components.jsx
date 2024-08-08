@@ -10,9 +10,10 @@ import languages from './languages.json';
 
 
 
-function Header({ language, setLanguage }) {
+function Header({ visible, setVisible, language, setLanguage }) {
   const [flag, setFlag] = useState("/usa.png");
   const [languageCode, setLanguageCode] = useState('EN');
+  const [navStatus, setNavStatus] = useState('hidden')
 
   const handleLanguageChange = (e) => {
     const selectedLanguage = e.target.value;
@@ -23,7 +24,6 @@ function Header({ language, setLanguage }) {
 
   const handleSmoothScroll = (e, sectionId) => {
     e.preventDefault();
-    
     const section = document.querySelector(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
@@ -32,8 +32,8 @@ function Header({ language, setLanguage }) {
 
   return (
     <header className="text-slate-50 w-full">
-      <Menu show={false}></Menu>
-      <nav id="nav" className="hidden bg-transparent text-2xl w-screen h-screen items-center flex-col cursor-pointer justify-evenly bg-black sm:text-1xl sm:h-1/6 sm:flex sm:mt-4 max-3xl lg:text-4xl max-3xl">
+      <Menu visible={visible} setVisible={setVisible} navStatus={navStatus} setNavStatus={setNavStatus}></Menu>
+      <nav id="nav" className={`${navStatus} text-2xl w-screen h-screen items-center flex-col cursor-pointer justify-evenly bg-black sm:text-1xl sm:h-1/6 sm:flex sm:mt-4 max-3xl lg:text-4xl max-3xl`}>
         <div id="div-a" className="w-screen h-full flex flex-col items-center justify-evenly sm:flex-row sm:justify-evenly sm:items-center max-3xl">
           <a
             id="text-home"
@@ -90,11 +90,15 @@ function Header({ language, setLanguage }) {
   );
 }
 
-export default Header;
+function handleMenuClick (visible, setVisible, navStatus, setNavStatus) {
+  setVisible(!visible)
+  setNavStatus(navStatus === 'hidden' ? '' : 'hidden')
+  // Instead using visible, cancel scroll or use position absolute // 
+}
 
 
-function Menu({show}) {
-    if (show) {
+function Menu({visible, setVisible, navStatus, setNavStatus}) {
+
       return (
         <header className="fixed h-10 bg-transparent w-screen z-20 sm:hidden max-3xl">
           <svg
@@ -105,13 +109,12 @@ function Menu({show}) {
             strokeWidth="1.5"
             stroke="currentColor"
             className="relative float-right mr-4 mt-4 w-8 h-8 sm:border-4 sm:border-red-500 max-3xl"
+            onClick={() => handleMenuClick(visible, setVisible, navStatus, setNavStatus)}
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
-
         </header>
       )
-    }
 }
 
 function Home({language}) {
