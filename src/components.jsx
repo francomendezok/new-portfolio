@@ -2,7 +2,7 @@
 import {useState, useEffect, useRef} from 'react';
 import Arrows from './Arrows.jsx';
 import projects from './projects.json';
-import x from '/x.svg';
+import wa from '/wa.svg';
 import linkedin from '/linkedin.svg';
 import email from '/email.svg';
 import github from '/github.svg';
@@ -225,7 +225,7 @@ function Contact ({language}) {
         <h3 id="text-contact-h3">{language.contact}</h3>
         <div id="social-icons" className="grid grid-cols-2 md:mt-8 md:mb-8 md:flex md:items-center md:justify-evenly max-3xl">
                 <div className="transform hover:scale-110 transition-transform ease-in-out duration-300 hover:text-cyan-300 flex items-center justify-center mt-4 text-center text-2xl md:text-3xl max-3xl">
-                    <a className="w-full flex flex-col items-center" target="_blank" href="https://twitter.com/francomendezok"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src={x} alt=""/>X</a>
+                    <a className="w-full flex flex-col items-center" target="_blank" href="https://wa.link/gt7xx4"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src={wa} alt=""/>Whatsapp</a>
                 </div>
                 <div className="transform hover:scale-110 transition-transform ease-in-out duration-300 hover:text-cyan-300 flex items-center justify-center mt-4 text-center text-2xl md:text-3xl max-3xl">
                     <a className="w-full flex flex-col items-center" target="_blank" href="https://linkedin.com/in/franco-mendez-a462b7235"><img className="w-12 h-12 md:w-24 md:h-24 md:mb-4 max-3xl" src={linkedin} alt=""/>Linkedin</a>
@@ -279,6 +279,7 @@ function Projects({language}) {
               <div id={position === 7 ? 'radio-item-selected' : ''} className='position-div'></div>
               <div id={position === 8 ? 'radio-item-selected' : ''} className='position-div'></div>
               <div id={position === 9 ? 'radio-item-selected' : ''} className='position-div'></div>
+              <div id={position === 10 ? 'radio-item-selected' : ''} className='position-div'></div>
           </div>
       </div>
   );

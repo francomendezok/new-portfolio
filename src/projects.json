@@ -58,5 +58,11 @@
         "title": "Nude Project Ecommerce",
         "repo": "https://github.com/francomendezok/nude-project",
         "web": "https://nude-project.vercel.app/"
+    },
+    {
+        "img": "/projects/quebrada.png",
+        "title": "La Quebrada Materiales Electricos",
+        "repo": "#",
+        "web": "https://electricidadlaquebrada.com.ar/"
     }
 ]
